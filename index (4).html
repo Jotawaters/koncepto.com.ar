@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koncepto - Agencia Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Variables y reset */
+        :root {
+            --dark-bg: rgb(4, 11, 15);
+            --blue: rgb(93, 149, 178);
+            --navy: rgb(0, 39, 63);
+            --pink: rgb(214, 11, 82);
+            --white: #ffffff;
+            --gray: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Tipografías */
+        h1, h2, h3, h4, .orbitron {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Utilidades */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(93, 149, 178, 0.8);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background-color: var(--navy);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0, 39, 63, 0.8);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--blue);
+            border: 2px solid var(--blue);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(93, 149, 178, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .text-blue {
+            color: var(--blue);
+        }
+
+        .text-navy {
+            color: var(--navy);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 2rem; }
+        .mb-5 { margin-bottom: 3rem; }
+        .mb-6 { margin-bottom: 4rem; }
+
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-3 { margin-top: 1.5rem; }
+        .mt-4 { margin-top: 2rem; }
+        .mt-5 { margin-top: 3rem; }
+        .mt-6 { margin-top: 4rem; }
+
+        /* Navegación */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(0, 39, 63, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 40px;
+        }
+
+        .nav-links a {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Header / Hero */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 39, 63, 0.8), rgba(4, 11, 15, 0.95));
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: var(--blue);
+            font-size: 30px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* Animated background elements */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.15;
+        }
+
+        .shape1 {
+            top: 20%;
+            left: 10%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: var(--pink);
+            filter: blur(100px);
+            animation: float1 15s infinite ease-in-out;
+        }
+
+        .shape2 {
+            top: 40%;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background-color: var(--blue);
+            filter: blur(120px);
+            animation: float2 20s infinite ease-in-out;
+        }
+
+        .shape3 {
+            bottom: 20%;
+            left: 30%;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-color: var(--navy);
+            filter: blur(80px);
+            animation: float3 18s infinite ease-in-out;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(100px, 50px); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-150px, 100px); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(80px, -120px); }
+        }
+
+        /* Floating geometric shapes */
+        .geometric-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .geo-shape {
+            position: absolute;
+            opacity: 0.2;
+        }
+
+        /* Servicios */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: rgba(0, 39, 63, 0.2);
+            border: 1px solid rgba(0, 39, 63, 0.8);
+            border-radius: 8px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--blue);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            color: var(--blue);
+            margin-bottom: 20px;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover .service-title {
+            color: var(--blue);
+        }
+
+        .service-description {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* Service Modal */
+        .service-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(4, 11, 15, 0.9);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .service-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .service-modal {
+            background-color: var(--dark-bg);
+            border: 1px solid var(--navy);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+            transform: translateY(30px);
+            transition: all 0.4s ease;
+        }
+
+        .service-modal-overlay.active .service-modal {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--blue);
+        }
+
+        .modal-content {
+            margin-bottom: 30px;
+        }
+
+        .modal-content p {
+            margin-bottom: 15px;
+            color: var(--gray);
+        }
+
+        .modal-form {
+            background-color: rgba(0, 39, 63, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .modal-form-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Nosotros */
+        .about-section {
+            background-color: rgba(0, 39, 63, 0.2);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .about-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .values-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .value-tag {
+            background-color: var(--dark-bg);
+            border: 1px solid rgba(93, 149, 178, 0.3);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-img-container {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .about-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 39, 63, 0.2), rgba(93, 149, 178, 0.2));
+            z-index: 1;
+        }
+
+        .stats-box {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            background-color: var(--dark-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--navy);
+            z-index: 2;
+        }
+
+        .stats-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--blue);
+        }
+
+        .stats-text {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Proyectos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(4, 11, 15, 1), transparent);
+            opacity: 0.8;
+        }
+
+        .project-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .project-card:hover .project-title {
+            color: var(--blue);
+        }
+
+        .project-category {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        /* Contacto */
+        .contact-section {
+            background-color: rgba(0, 39, 63, 0.2);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .contact-icon-box {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 20px;
+        }
+
+        .icon-email {
+            background-color: var(--blue);
+        }
+
+        .icon-phone {
+            background-color: var(--navy);
+        }
+
+        .icon-location {
+            background-color: var(--navy);
+        }
+
+        .contact-info-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .contact-info-content p {
+            color: var(--gray);
+        }
+
+        .contact-form {
+            background-color: rgba(4, 11, 15, 0.8);
+            border: 1px solid var(--navy);
+            border-radius: 8px;
+            padding: 40px;
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(0, 39, 63, 0.2);
+            border: 1px solid var(--navy);
+            border-radius: 4px;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--blue);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg);
+            border-top: 1px solid var(--navy);
+            padding: 80px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            height: 25px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--navy);
+            border-radius: 4px;
+            color: var(--white);
+            transition: background-color 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--blue);
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--blue);
+        }
+
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            background-color: rgba(0, 39, 63, 0.2);
+            border: 1px solid var(--navy);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--blue);
+        }
+
+        .newsletter-btn {
+            background-color: var(--blue);
+            color: var(--white);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            padding: 0 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            background-color: rgba(93, 149, 178, 0.8);
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--navy);
+        }
+
+        .copyright {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-legal a {
+            color: var(--gray);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--blue);
+        }
+
+        /* Parallax effect */
+        .parallax-element {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        /* Mobile Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--dark-bg);
+            z-index: 1002;
+            padding: 80px 40px;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav-links a {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 18px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(4, 11, 15, 0.8);
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+            
+            .stats-box {
+                bottom: -20px;
+                right: -20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-modal {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .section {
+                padding: 70px 0;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .fade-in.active {
+            animation: fadeIn 0.8s forwards;
+        }
+
+        /* Geometric shapes */
+        .geo-shape {
+            position: absolute;
+            opacity: 0.2;
+        }
+
+        .diamond {
+            width: 30px;
+            height: 30px;
+            background-color: var(--blue);
+            transform: rotate(45deg);
+            animation: floatShape 20s infinite ease-in-out;
+        }
+
+        .pentagon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--navy);
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            animation: floatShape 25s infinite ease-in-out;
+        }
+
+        .hexagon {
+            width: 35px;
+            height: 35px;
+            background-color: var(--navy);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            animation: floatShape 22s infinite ease-in-out;
+        }
+
+        .circle {
+            width: 25px;
+            height: 25px;
+            background-color: var(--blue);
+            border-radius: 50%;
+            animation: floatShape 18s infinite ease-in-out;
+        }
+
+        @keyframes floatShape {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(50px, 100px) rotate(90deg);
+            }
+            50% {
+                transform: translate(100px, 50px) rotate(180deg);
+            }
+            75% {
+                transform: translate(50px, -50px) rotate(270deg);
+            }
+        }
+
+        /* Cursor effect */
+        .cursor-effect {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--blue);
+            opacity: 0.5;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, opacity 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cursor effect -->
+    <div class="cursor-effect"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="#" class="logo-container">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logoFINAL-nuWKengv2xzjy0Ds2f0ZR1hG8pP0b5.png" alt="Koncepto Logo" class="logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#servicios">SERVICIOS</a></li>
+                <li><a href="#nosotros">NOSOTROS</a></li>
+                <li><a href="#proyectos">PROYECTOS</a></li>
+                <li><a href="#contacto">CONTACTO</a></li>
+            </ul>
+            <a href="#contacto" class="btn btn-primary">CONTÁCTANOS</a>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-overlay"></div>
+    <nav class="mobile-nav">
+        <button class="mobile-nav-close">✕</button>
+        <ul class="mobile-nav-links">
+            <li><a href="#servicios">SERVICIOS</a></li>
+            <li><a href="#nosotros">NOSOTROS</a></li>
+            <li><a href="#proyectos">PROYECTOS</a></li>
+            <li><a href="#contacto">CONTACTO</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header / Hero -->
+    <header class="hero" id="home">
+        <div class="hero-bg"></div>
+        
+        <!-- Animated background elements -->
+        <div class="animated-bg">
+            <div class="shape shape1"></div>
+            <div class="shape shape2"></div>
+            <div class="shape shape3"></div>
+        </div>
+        
+        <!-- Floating geometric shapes -->
+        <div class="geometric-shapes">
+            <!-- These will be generated by JavaScript -->
+        </div>
+        
+        <div class="hero-content fade-in">
+            <h1 class="hero-title"><span class="text-blue"> COMUNICACIÓN </span> DIGITAL <br><span class="text-navy">Y DESARROLLO</span></h1>
+            <p class="hero-subtitle">Transformamos ideas en experiencias digitales excepcionales con estrategias de paid media, desarrollo web y soluciones de IA personalizadas.</p>
+            <div class="hero-buttons">
+                <a href="#servicios" class="btn btn-primary">NUESTROS SERVICIOS</a>
+                <a href="#nosotros" class="btn btn-outline">CONOCE MÁS</a>
+            </div>
+        </div>
+        
+        <a href="#servicios" class="scroll-down">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </a>
+    </header>
+
+    <!-- Servicios -->
+    <section class="section" id="servicios">
+        <div class="container">
+            <h2 class="section-title fade-in">NUESTROS <span class="text-blue">SERVICIOS</span></h2>
+            <p class="section-subtitle fade-in">Ofrecemos soluciones digitales completas para potenciar tu presencia online y maximizar tus resultados.</p>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in" data-service="paid-media">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h10"/><path d="M7 12h10"/><path d="M7 17h10"/></svg>
+                    </div>
+                    <h3 class="service-title">Paid Media</h3>
+                    <p class="service-description">Estrategias de publicidad digital optimizadas para maximizar tu ROI y alcanzar a tu audiencia ideal.</p>
+                </div>
+                
+                <div class="service-card fade-in" data-service="desarrollo-web">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <h3 class="service-title">Desarrollo Web</h3>
+                    <p class="service-description">Creamos sitios web y aplicaciones a medida con diseños atractivos y funcionalidades avanzadas.</p>
+                </div>
+                
+                <div class="service-card fade-in" data-service="asesoria-ia">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                    </div>
+                    <h3 class="service-title">Asesoría en IA</h3>
+                    <p class="service-description">Implementamos soluciones de inteligencia artificial para optimizar tus procesos y mejorar la toma de decisiones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Modals -->
+    <!-- Paid Media Modal -->
+    <div class="service-modal-overlay" id="paid-media-modal">
+        <div class="service-modal">
+            <button class="modal-close">✕</button>
+            <h3 class="modal-title">Paid Media</h3>
+            <div class="modal-content">
+                <p>Nuestro servicio de Paid Media está diseñado para maximizar el retorno de inversión de tus campañas publicitarias digitales. Utilizamos estrategias avanzadas de segmentación y optimización para llegar a tu audiencia ideal en el momento preciso.</p>
+                <p>Trabajamos con todas las plataformas principales incluyendo Google Ads, Facebook e Instagram Ads, LinkedIn Ads, TikTok y más. Nuestro enfoque se basa en datos y análisis constante para mejorar continuamente los resultados.</p>
+                <p><strong>Beneficios:</strong></p>
+                <ul style="color: var(--gray); margin-bottom: 15px; padding-left: 20px;">
+                    <li>Mayor visibilidad de marca</li>
+                    <li>Generación de leads cualificados</li>
+                    <li>Aumento de conversiones y ventas</li>
+                    <li>Optimización continua de campañas</li>
+                    <li>Informes detallados de rendimiento</li>
+                </ul>
+            </div>
+            <div class="modal-form">
+                <h4 class="modal-form-title">¿Interesado en nuestro servicio de Paid Media?</h4>
+                <form class="service-contact-form">
+                    <div class="form-group">
+                        <label for="paid-media-name">Nombre</label>
+                        <input type="text" id="paid-media-name" class="form-control" placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="paid-media-email">Email</label>
+                        <input type="email" id="paid-media-email" class="form-control" placeholder="Tu email">
+                    </div>
+                    <div class="form-group">
+                        <label for="paid-media-message">Mensaje</label>
+                        <textarea id="paid-media-message" class="form-control" placeholder="Cuéntanos sobre tu proyecto"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">CONTACTAR AHORA</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desarrollo Web Modal -->
+    <div class="service-modal-overlay" id="desarrollo-web-modal">
+        <div class="service-modal">
+            <button class="modal-close">✕</button>
+            <h3 class="modal-title">Desarrollo Web</h3>
+            <div class="modal-content">
+                <p>Creamos sitios web y aplicaciones a medida que no solo se ven increíbles, sino que también ofrecen una experiencia de usuario excepcional y cumplen con tus objetivos de negocio.</p>
+                <p>Nuestro equipo de desarrolladores y diseñadores trabaja con las últimas tecnologías para crear soluciones digitales escalables, seguras y optimizadas para buscadores.</p>
+                <p><strong>Nuestros servicios incluyen:</strong></p>
+                <ul style="color: var(--gray); margin-bottom: 15px; padding-left: 20px;">
+                    <li>Diseño y desarrollo de sitios web corporativos</li>
+                    <li>Tiendas online y comercio electrónico</li>
+                    <li>Aplicaciones web personalizadas</li>
+                    <li>Optimización de rendimiento y velocidad</li>
+                    <li>Mantenimiento y soporte técnico</li>
+                </ul>
+            </div>
+            <div class="modal-form">
+                <h4 class="modal-form-title">¿Necesitas un proyecto web?</h4>
+                <form class="service-contact-form">
+                    <div class="form-group">
+                        <label for="desarrollo-web-name">Nombre</label>
+                        <input type="text" id="desarrollo-web-name" class="form-control" placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="desarrollo-web-email">Email</label>
+                        <input type="email" id="desarrollo-web-email" class="form-control" placeholder="Tu email">
+                    </div>
+                    <div class="form-group">
+                        <label for="desarrollo-web-message">Mensaje</label>
+                        <textarea id="desarrollo-web-message" class="form-control" placeholder="Cuéntanos sobre tu proyecto"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">CONTACTAR AHORA</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Asesoría IA Modal -->
+    <div class="service-modal-overlay" id="asesoria-ia-modal">
+        <div class="service-modal">
+            <button class="modal-close">✕</button>
+            <h3 class="modal-title">Asesoría en IA</h3>
+            <div class="modal-content">
+                <p>Ayudamos a empresas a implementar soluciones de inteligencia artificial que transforman sus operaciones, mejoran la toma de decisiones y crean nuevas oportunidades de negocio.</p>
+                <p>Nuestro equipo de expertos en IA trabaja para entender tus necesidades específicas y desarrollar soluciones personalizadas que generen un impacto real en tu organización.</p>
+                <p><strong>Áreas de especialización:</strong></p>
+                <ul style="color: var(--gray); margin-bottom: 15px; padding-left: 20px;">
+                    <li>Análisis predictivo y big data</li>
+                    <li>Chatbots y asistentes virtuales</li>
+                    <li>Automatización de procesos</li>
+                    <li>Sistemas de recomendación</li>
+                    <li>Visión por computadora</li>
+                </ul>
+            </div>
+            <div class="modal-form">
+                <h4 class="modal-form-title">¿Interesado en implementar IA en tu negocio?</h4>
+                <form class="service-contact-form">
+                    <div class="form-group">
+                        <label for="asesoria-ia-name">Nombre</label>
+                        <input type="text" id="asesoria-ia-name" class="form-control" placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="asesoria-ia-email">Email</label>
+                        <input type="email" id="asesoria-ia-email" class="form-control" placeholder="Tu email">
+                    </div>
+                    <div class="form-group">
+                        <label for="asesoria-ia-message">Mensaje</label>
+                        <textarea id="asesoria-ia-message" class="form-control" placeholder="Cuéntanos sobre tu proyecto"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">CONTACTAR AHORA</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nosotros -->
+    <section class="section about-section" id="nosotros">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content fade-in">
+                    <h2>SOMOS <span class="text-blue">KONCEPTO</span></h2>
+                    <p>Una agencia digital especializada en transformar ideas en soluciones digitales efectivas. Combinamos creatividad, tecnología y estrategia para impulsar el crecimiento de tu negocio.</p>
+                    <p>Nuestro equipo de expertos está comprometido con la excelencia y la innovación, utilizando las últimas tecnologías y metodologías para ofrecer resultados excepcionales.</p>
+                    
+                    <div class="values-container">
+                        <div class="value-tag">INNOVACIÓN</div>
+                        <div class="value-tag">PROFESIONALISMO</div>
+                        <div class="value-tag">RESULTADOS</div>
+                        <div class="value-tag">TECNOLOGÍA</div>
+                    </div>
+                </div>
+                
+                <div class="about-image fade-in">
+                    <div class="about-img-container">
+                        <div class="about-img-overlay"></div>
+                        <img src="https://placehold.co/600x600" alt="Equipo Koncepto">
+                    </div>
+                    <div class="stats-box">
+                        <p class="stats-number">5+</p>
+                        <p class="stats-text">Años de experiencia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section class="section" id="proyectos">
+        <div class="container">
+            <h2 class="section-title fade-in">NUESTROS <span class="text-blue">PROYECTOS</span></h2>
+            <p class="section-subtitle fade-in">Descubre cómo hemos ayudado a nuestros clientes a alcanzar sus objetivos digitales.</p>
+            
+            <div class="projects-grid">
+                <!-- Proyecto 1 -->
+                <div class="project-card fade-in">
+                    <img src="https://placehold.co/600x450" alt="Proyecto 1" class="project-img">
+                    <div class="project-overlay"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Proyecto 1</h3>
+                        <p class="project-category">Desarrollo Web</p>
+                        <a href="#" class="btn btn-outline">VER PROYECTO</a>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 2 -->
+                <div class="project-card fade-in">
+                    <img src="https://placehold.co/600x450" alt="Proyecto 2" class="project-img">
+                    <div class="project-overlay"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Proyecto 2</h3>
+                        <p class="project-category">Paid Media</p>
+                        <a href="#" class="btn btn-outline">VER PROYECTO</a>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 3 -->
+                <div class="project-card fade-in">
+                    <img src="https://placehold.co/600x450" alt="Proyecto 3" class="project-img">
+                    <div class="project-overlay"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Proyecto 3</h3>
+                        <p class="project-category">Inteligencia Artificial</p>
+                        <a href="#" class="btn btn-outline">VER PROYECTO</a>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 4 -->
+                <div class="project-card fade-in">
+                    <img src="https://placehold.co/600x450" alt="Proyecto 4" class="project-img">
+                    <div class="project-overlay"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Proyecto 4</h3>
+                        <p class="project-category">Desarrollo Web</p>
+                        <a href="#" class="btn btn-outline">VER PROYECTO</a>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 5 -->
+                <div class="project-card fade-in">
+                    <img src="https://placehold.co/600x450" alt="Proyecto 5" class="project-img">
+                    <div class="project-overlay"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Proyecto 5</h3>
+                        <p class="project-category">Paid Media</p>
+                        <a href="#" class="btn btn-outline">VER PROYECTO</a>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 6 -->
+                <div class="project-card fade-in">
+                    <img src="https://placehold.co/600x450" alt="Proyecto 6" class="project-img">
+                    <div class="project-overlay"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Proyecto 6</h3>
+                        <p class="project-category">Inteligencia Artificial</p>
+                        <a href="#" class="btn btn-outline">VER PROYECTO</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="section contact-section" id="contacto">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <h2 class="mb-4">HABLEMOS DE TU <span class="text-blue">PROYECTO</span></h2>
+                    <p class="mb-5">Estamos listos para ayudarte a alcanzar tus objetivos digitales. Contáctanos y descubre cómo podemos transformar tu presencia online.</p>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon-box icon-email">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Email</h3>
+                            <p>info@koncepto.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon-box icon-phone">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Teléfono</h3>
+                            <p>+34 123 456 789</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon-box icon-location">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </div>
+                        <div class="contact-info-content">
+                            <h3>Dirección</h3>
+                            <p>Calle Principal 123, Madrid, España</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form fade-in">
+                    <h3>ENVÍANOS UN MENSAJE</h3>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nombre</label>
+                                <input type="text" id="name" class="form-control" placeholder="Tu nombre">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" placeholder="Tu email">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Asunto</label>
+                            <input type="text" id="subject" class="form-control" placeholder="Asunto del mensaje">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" class="form-control" placeholder="Tu mensaje"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">ENVIAR MENSAJE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logoFINAL-nuWKengv2xzjy0Ds2f0ZR1hG8pP0b5.png" alt="Koncepto Logo" class="footer-logo">
+                    <p class="footer-about">Transformamos ideas en experiencias digitales excepcionales.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">Servicios</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Paid Media</a></li>
+                        <li><a href="#">Desarrollo Web</a></li>
+                        <li><a href="#">Asesoría en IA</a></li>
+                        <li><a href="#">SEO</a></li>
+                        <li><a href="#">Branding Digital</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">Empresa</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Proyectos</a></li>
+                        <li><a href="#">Testimonios</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p class="footer-about">Suscríbete para recibir las últimas noticias y actualizaciones.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Tu email">
+                        <button type="submit" class="newsletter-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">© <span id="currentYear">2023</span> Koncepto. Todos los derechos reservados.</p>
+                <div class="footer-legal">
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Términos de Servicio</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Actualizar año actual en el footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Fade-in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        function checkFade() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                
+                if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        // Initial check
+        checkFade();
+        
+        // Check on scroll
+        window.addEventListener('scroll', checkFade);
+        
+        // Generate geometric shapes
+        const geometricShapes = document.querySelector('.geometric-shapes');
+        const shapeTypes = ['diamond', 'pentagon', 'hexagon', 'circle'];
+        const shapeColors = ['var(--blue)', 'var(--navy)'];
+        
+        for (let i = 0; i < 15; i++) {
+            const shape = document.createElement('div');
+            const shapeType = shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
+            
+            shape.classList.add('geo-shape', shapeType);
+            shape.style.top = `${Math.random() * 100}%`;
+            shape.style.left = `${Math.random() * 100}%`;
+            shape.style.backgroundColor = shapeColors[Math.floor(Math.random() * shapeColors.length)];
+            shape.style.opacity = (Math.random() * 0.2 + 0.1).toString();
+            
+            // Random animation delay and duration
+            shape.style.animationDelay = `${Math.random() * 5}s`;
+            shape.style.animationDuration = `${Math.random() * 10 + 15}s`;
+            
+            geometricShapes.appendChild(shape);
+        }
+        
+        // Parallax effect
+        document.addEventListener('mousemove', function(e) {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            const moveX = (mouseX - windowWidth / 2) / 50;
+            const moveY = (mouseY - windowHeight / 2) / 50;
+            
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent) {
+                heroContent.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+            }
+        });
+        
+        // Custom cursor effect
+        const cursor = document.querySelector('.cursor-effect');
+        
+        document.addEventListener('mousemove', function(e) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        
+        document.addEventListener('mousedown', function() {
+            cursor.style.width = '30px';
+            cursor.style.height = '30px';
+            cursor.style.opacity = '0.8';
+        });
+        
+        document.addEventListener('mouseup', function() {
+            cursor.style.width = '20px';
+            cursor.style.height = '20px';
+            cursor.style.opacity = '0.5';
+        });
+        
+        // Links and buttons hover effect
+        const links = document.querySelectorAll('a, button');
+        
+        links.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                cursor.style.width = '40px';
+                cursor.style.height = '40px';
+                cursor.style.opacity = '0.3';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                cursor.style.width = '20px';
+                cursor.style.height = '20px';
+                cursor.style.opacity = '0.5';
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+        const mobileNavClose = document.querySelector('.mobile-nav-close');
+        
+        if (mobileMenuBtn && mobileNav && mobileNavOverlay) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileNav.classList.add('active');
+                mobileNavOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            function closeMobileNav() {
+                mobileNav.classList.remove('active');
+                mobileNavOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            mobileNavClose.addEventListener('click', closeMobileNav);
+            mobileNavOverlay.addEventListener('click', closeMobileNav);
+            
+            // Close mobile nav when clicking on a link
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', closeMobileNav);
+            });
+        }
+        
+        // Service modals
+        const serviceCards = document.querySelectorAll('.service-card');
+        const serviceModals = document.querySelectorAll('.service-modal-overlay');
+        const modalCloseButtons = document.querySelectorAll('.modal-close');
+        
+        serviceCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const serviceId = this.getAttribute('data-service');
+                const modal = document.getElementById(`${serviceId}-modal`);
+                
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+        
+        modalCloseButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const modal = this.closest('.service-modal-overlay');
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        serviceModals.forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        const serviceContactForms = document.querySelectorAll('.service-contact-form');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
+                contactForm.reset();
+            });
+        }
+        
+        serviceContactForms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('¡Gracias por tu interés en nuestros servicios! Te contactaremos pronto.');
+                form.reset();
+                
+                // Close the modal after form submission
+                const modal = this.closest('.service-modal-overlay');
+                setTimeout(() => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }, 1000);
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
